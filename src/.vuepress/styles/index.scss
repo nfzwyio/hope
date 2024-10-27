@@ -1,1 +1,6 @@
 // place your custom styles here
+$indent-size: 2em;
+
+p {
+  text-indent: $indent-size;
+}
