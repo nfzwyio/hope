@@ -30,7 +30,7 @@ let img = document.body.querySelector("img.button");
 
  querySelectorAll()方法接受的参数同querySelector()，但返回所有匹配的节点：一个NodeList静态实例。
 
- 需要清楚的是，此返回值也是有相同属性和方法的NodeList，其底层实现是**充当元素的快照**而不是对文档不断的进行动态查询。此实现消除了与使用NodeList对象相关的大多数性能开销:
+ 需要清楚的是，此返回值也是有相同属性和方法的NodeList，其底层实现是 **充当元素的快照** 而不是对文档不断的进行动态查询。此实现消除了与使用NodeList对象相关的大多数性能开销:
 
 ```js
 // 获取<div>中的所有<em> (类似于getElementsByTagName("em"))
@@ -95,7 +95,7 @@ console.log(allCurrentUsernames);//[div.current.username]
 let selected = document.getElementById("myDiv").getElementsByClassName("selected");
 ```
 
-**由于返回的值是NodeList，因此与使用getElementsByTagName（）和其他返回NodeList对象的DOM方法一样，存在相同的性能问题**。
+ **由于返回的值是NodeList，因此与使用getElementsByTagName（）和其他返回NodeList对象的DOM方法一样，存在相同的性能问题** 。
 
 #### classList属性
 
@@ -327,7 +327,7 @@ div.parentNode.replaceChild(p, div);
 <div id="myDiv">原始div</div>
 ```
 
- 第一个参数为beforebegin时,作为同胞**插入到元素之前**：
+ 第一个参数为beforebegin时,作为同胞 **插入到元素之前** ：
 
 ```js
 let div = document.getElementById("myDiv");
@@ -343,7 +343,7 @@ Hello world!
 <div id="myDiv">原始div</div>
 ```
 
- 第一个参数为afterbegin时，将作为新孩子或第一个孩子**插入到元素中**：
+ 第一个参数为afterbegin时，将作为新孩子或第一个孩子 **插入到元素中** ：
 
 ```js
 let div = document.getElementById("myDiv");
@@ -361,7 +361,7 @@ div.insertAdjacentText("afterbegin", "Hello world!");
 </div>
 ```
 
- 第一个参数为afterend时，将作为同胞**插入到元素后面**：
+ 第一个参数为afterend时，将作为同胞 **插入到元素后面** ：
 
 ```js
 div.insertAdjacentHTML("afterend","<p>Hello world!</p>");

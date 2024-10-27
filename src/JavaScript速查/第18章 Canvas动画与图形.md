@@ -680,7 +680,7 @@ gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, 0.5, 1]), gl.STATIC_DRAW);
 ```
 
- **调用gl.bindBuffer（）将buffer设置为环境的当前缓冲区。此后，所有缓冲区操作将直接在buffer上执行。因此，对gl.bufferData（）的调用不包含对buffer的直接引用，但仍可对其进行处理**。最后一行使用来自Float32Array的信息初始化缓冲区（通常使用Float32Array获取所有顶点信息）。如果打算使用drawElements（）输出缓冲区内容，则使用gl.ELEMENT\_ARRAY\_BUFFER。
+ **调用gl.bindBuffer（）将buffer设置为环境的当前缓冲区。此后，所有缓冲区操作将直接在buffer上执行。因此，对gl.bufferData（）的调用不包含对buffer的直接引用，但仍可对其进行处理** 。最后一行使用来自Float32Array的信息初始化缓冲区（通常使用Float32Array获取所有顶点信息）。如果打算使用drawElements（）输出缓冲区内容，则使用gl.ELEMENT\_ARRAY\_BUFFER。
 
  gl.bufferData（）的最后一个参数指示如何使用缓冲区。这是以下常量之一：
 
@@ -895,7 +895,7 @@ if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
 
 -  **gl.TRIANGLES_FAN** 与gl.TRIANGLES相同，但从第二个三角形开始，将包括前一个三角形两端的顶点。例如，如果数组包含顶点A，B，C，D，则第一个三角形绘制为ABC，第二个三角形绘制为ACD。
 
--  **gl.drawArrays**（）方法接受上述值之一作为其第一个参数，将数组缓冲区中的起始索引作为第二个参数，并将数组缓冲区中包含的集合数作为第三个参数。以下代码使用gl.drawArrays（）在画布上绘制一个三角形：
+-  **gl.drawArrays** （）方法接受上述值之一作为其第一个参数，将数组缓冲区中的起始索引作为第二个参数，并将数组缓冲区中包含的集合数作为第三个参数。以下代码使用gl.drawArrays（）在画布上绘制一个三角形：
 
 
 ```html

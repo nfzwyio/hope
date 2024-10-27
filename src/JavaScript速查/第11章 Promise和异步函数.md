@@ -257,9 +257,9 @@ setTimeout(console.log, 0, p2); // Promise <pending>
 setTimeout(console.log, 0, p1 === p2); // false
 ```
 
- **这个新实例派生自onResolved handler的返回值。（handler的返回值包装在Promise.resolve（）中以生成新的promise） 。**
+ **这个新实例派生自onResolved handler的返回值。（handler的返回值包装在Promise.resolve（）中以生成新的promise） 。** 
 
- **如果没提供处理程序函数，then仅作为通道传递最初的promise的resolved值。**
+ **如果没提供处理程序函数，then仅作为通道传递最初的promise的resolved值。** 
 
  **如果没有明确的返回语句，那么返回值是包装在Promise.resolve（）中的undefined** 。如下所示：
 
@@ -1224,7 +1224,7 @@ foo();
 // 3
 ```
 
- await关键字将暂停执行异步函数，释放JavaScript运行时的执行线程。这种行为有点像生成器函数中的yeild关键字。**await尝试‘打开’对象的值，将值传递给表达式**，然后异步恢复异步函数的执行。
+ await关键字将暂停执行异步函数，释放JavaScript运行时的执行线程。这种行为有点像生成器函数中的yeild关键字。 **await尝试‘打开’对象的值，将值传递给表达式** ，然后异步恢复异步函数的执行。
 
  await关键字的用法与JavaScript一元运算符的用法相同。可以单独使用，也可以在表达式内部使用：
 

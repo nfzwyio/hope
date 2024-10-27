@@ -68,7 +68,7 @@ console.log(div.nodeValue);//null
 
 ## 节点关系
 
- 文档中的所有节点都与其他节点有关系。这些关系是按照传统的家庭关系来描述的，文档树就像是家庭树一样。在HTML中，\<body\>元素被认为是 \<html\>元素的孩子，\<head\>元素被认为是\<body\>元素的同胞，因为它们有共同的直接父亲 \<html\>元素。每个节点都有一个childNodes属性，其包含NodeList。**NodeList是类数组对象，DOM改变时NodeList会同步更新**。每个节点在文档树中都有一个指向其父节点的parentNode属性。
+ 文档中的所有节点都与其他节点有关系。这些关系是按照传统的家庭关系来描述的，文档树就像是家庭树一样。在HTML中，\<body\>元素被认为是 \<html\>元素的孩子，\<head\>元素被认为是\<body\>元素的同胞，因为它们有共同的直接父亲 \<html\>元素。每个节点都有一个childNodes属性，其包含NodeList。 **NodeList是类数组对象，DOM改变时NodeList会同步更新** 。每个节点在文档树中都有一个指向其父节点的parentNode属性。
 
  childNodes列表中包含的所有节点都具有相同的父节点，因此它们的每个parentNode属性都指向同一节点。另外，childNodes列表中的每个节点都被视为同一列表中其他节点的同胞。通过使用previousSibling和nextSibling属性，可以从列表中的一个节点导航到另一个节点。列表中的第一个节点的previousSibling属性的值为null，列表中的最后一个节点的nextSibling属性的值为null。
 
@@ -76,11 +76,11 @@ console.log(div.nodeValue);//null
 
 ### 操纵节点
 
- appendChild()添加节点到对应元素childNodes的末尾并**返回新添加的节点**，且更新此节点的所有关系指针。如果传递给appendChild()的节点已经是文档的一部分时，该节点将从之前的位置移除，并添加到新位置。DOM节点在文档中的位置是独一无二的，不可能同时存在于两个地方。
+ appendChild()添加节点到对应元素childNodes的末尾并 **返回新添加的节点** ，且更新此节点的所有关系指针。如果传递给appendChild()的节点已经是文档的一部分时，该节点将从之前的位置移除，并添加到新位置。DOM节点在文档中的位置是独一无二的，不可能同时存在于两个地方。
 
- insertBefore()接受两个参数，要插入的节点和参考节点。要插入的节点成为参考节点的上一个同胞节点，并**返回此节点**。如果参考节点为null，insertBefore（）的行为与appendChild（）相同。
+ insertBefore()接受两个参数，要插入的节点和参考节点。要插入的节点成为参考节点的上一个同胞节点，并 **返回此节点** 。如果参考节点为null，insertBefore（）的行为与appendChild（）相同。
 
- replaceChild()接受两个参数：要插入的新节点和要被替换掉的节点。该方法**返回替换掉的节点**并将其从节点树中移除。同时指针关系复制到新节点。
+ replaceChild()接受两个参数：要插入的新节点和要被替换掉的节点。该方法 **返回替换掉的节点** 并将其从节点树中移除。同时指针关系复制到新节点。
 
  removeChild()移除节点并返回之。被该方法移除的节点仍被文档所拥有，但在文档中没有具体位置。
 
@@ -144,7 +144,7 @@ console.log(document.referrer);//
 
  getElementById()返回第一个获取到的元素，没找到返回null。
 
- getElementsByTagName()返回一个包含零个或多个元素的NodeList。 **在HTML文档中，此方法返回一个HTMLCollection对象，该对象与NodeList非常相似，因为它被视为“活的”集合**。HTMLCollection对象还有一个namedItem()方法，可以通过其name属性引用集合中的元素。
+ getElementsByTagName()返回一个包含零个或多个元素的NodeList。 **在HTML文档中，此方法返回一个HTMLCollection对象，该对象与NodeList非常相似，因为它被视为“活的”集合** 。HTMLCollection对象还有一个namedItem()方法，可以通过其name属性引用集合中的元素。
 
 ```html
 <img src="myimage.gif" name="myImage">
@@ -231,7 +231,7 @@ document.write("<script type=\"text/javascript\" src=\"file.js\">" + "<\/script>
 </html>
 ```
 
- **open()和close()分别用于打开和关闭页面输出流，也是在页面加载期间使用**。
+ **open()和close()分别用于打开和关闭页面输出流，也是在页面加载期间使用** 。
 
 >注意:严格的XHTML文档不支持文档编写。对于使用application / xml + xhtml内容类型提供的页面,这些方法将不起作用。
 
@@ -309,7 +309,7 @@ HTML5里，自定义特性名应加上data-前缀。
 
 ### 设置特性
 
- setAttribute()接受两个参数：需要设置的特性名和值，**如果特性存在，则替换其值**。
+ setAttribute()接受两个参数：需要设置的特性名和值， **如果特性存在，则替换其值** 。
 
  **添加自定义特性到DOM元素不会自动成为元素的特性** 。
 
@@ -596,7 +596,7 @@ console.log(element.childNodes.length); // 2
 
   
 
- 文档片段继承了Node的所有方法，**如果将文档中的某个节点添加到文档片段中，则该节点将从文档树中删除，并且不会被浏览器渲染**。添加到文档片段的新节点也不是文档树的一部分。可以通过appendChild（）或insertBefore（）将文档片段的内容添加到文档中。当文档片段作为参数传递给这两个方法时，所有文档片段的子节点都添加到该位置，文档片段本身不会添加到文档树。例如:
+ 文档片段继承了Node的所有方法， **如果将文档中的某个节点添加到文档片段中，则该节点将从文档树中删除，并且不会被浏览器渲染** 。添加到文档片段的新节点也不是文档树的一部分。可以通过appendChild（）或insertBefore（）将文档片段的内容添加到文档中。当文档片段作为参数传递给这两个方法时，所有文档片段的子节点都添加到该位置，文档片段本身不会添加到文档树。例如:
 
 ```html
 <ul id="myList"></ul>
@@ -682,7 +682,7 @@ let head = document.getElementsByTagName("head")[0];
 head.appendChild(link);
 ```
 
-**通过外部文件加载样式是异步的，所以JS执行时加载的样式是无序的，通常，无需知道样式何时加载完成**。
+ **通过外部文件加载样式是异步的，所以JS执行时加载的样式是无序的，通常，无需知道样式何时加载完成** 。
 
 ## 操纵表格
 
@@ -1260,7 +1260,7 @@ console.log(observer.takeRecords());
 
 ### MutationObserver的引用
 
-**MutationObserver与它观察到的一个或多个节点之间的引用关系是不对称的。 MutationObserver对它正在观察的目标节点是弱引用。由于此引用很弱，因此不会阻止目标节点被垃圾回收。但是，节点对其MutationObserver有很强的引用。如果将目标节点从DOM中删除并随后进行垃圾回收，则关联的MutationObserver也将被垃圾回收**。
+ **MutationObserver与它观察到的一个或多个节点之间的引用关系是不对称的。 MutationObserver对它正在观察的目标节点是弱引用。由于此引用很弱，因此不会阻止目标节点被垃圾回收。但是，节点对其MutationObserver有很强的引用。如果将目标节点从DOM中删除并随后进行垃圾回收，则关联的MutationObserver也将被垃圾回收** 。
 
 ### MutationRecord的引用
 

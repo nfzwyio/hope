@@ -1,5 +1,6 @@
 ---
-home: true
+home: false
+# layout: BlogHome
 icon: home
 title: 南风文档
 # heroImage: "logo.ico"
@@ -319,8 +320,8 @@ copyright: false
 footer: 使用 <a href="https://theme-hope.vuejs.press/zh/" target="_blank">VuePress Theme Hope</a> 主题 | MIT 协议, 版权所有 © 2019-至今 Mr.Hope
 ---
 
-容。
 
 
+<MatrixRain />
 
 配置项的相关说明详见 [项目主页配置](https://theme-hope.vuejs.press/zh/guide/layout/home/)。

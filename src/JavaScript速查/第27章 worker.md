@@ -102,13 +102,13 @@ WorkerGlobalScope 实际上并未在所有地方实现。每种类型的 worker 
 
 创建专用 Worker 的最常见方法是通过加载 JavaScript 文件。文件路径提供给 Worker 构造函数，后者依次在后台异步加载脚本并实例化 Worker。构造函数需要一个文件路径，尽管该路径可以采用几种不同的形式。以下简单示例创建了一个空的专用 Worker 线程:
 
-**emptyWorker.js**
+ **emptyWorker.js** 
 
 ```javascript
 // empty JS Worker file
 ```
 
-**main.js**
+ **main.js** 
 
 ```javascript
 console.log(location.href); // "https://example.com/"
@@ -145,13 +145,13 @@ const remoteOriginWorker = new Worker('https://untrusted.com/worker.js');
 // from origin https://example.com
 ```
 
-**注意:** Worker 源限制不会阻止从远程源执行代码。这可以通过在 Worker 内部使用 `importScripts()` 完成。从加载的脚本创建的 Worker 不受文档内容安全策略的约束，因为 Worker 在与父文档不同的环境中执行。但是，如果从具有全局唯一标识符的脚本加载 Worker（例如从 Blob 加载 Worker 的情况），它将受父文档的内容安全策略的约束。
+ **注意:** Worker 源限制不会阻止从远程源执行代码。这可以通过在 Worker 内部使用 `importScripts()` 完成。从加载的脚本创建的 Worker 不受文档内容安全策略的约束，因为 Worker 在与父文档不同的环境中执行。但是，如果从具有全局唯一标识符的脚本加载 Worker（例如从 Blob 加载 Worker 的情况），它将受父文档的内容安全策略的约束。
 
 #### 使用 Worker 对象
 
 从 `Worker()` 构造函数返回的 Worker 对象用作与新创建的专用 Worker 的单点通信。它可用于在 Worker 和父环境之间传输信息，以及捕获从专用 Worker 发出的事件。
 
-**注意:** 仔细跟踪创建的每个 Worker 对象的引用。在 Worker 终止之前，它不能被垃圾收集，并且没有可用于重新获得对 Worker 对象的引用的编程工具。
+ **注意:** 仔细跟踪创建的每个 Worker 对象的引用。在 Worker 终止之前，它不能被垃圾收集，并且没有可用于重新获得对 Worker 对象的引用的编程工具。
 
 Worker 对象支持以下事件处理程序属性:
 - `onerror` 可以分配一个事件处理程序，每当 Worker 发生 ErrorEvent 类型的错误时都会调用该处理程序。当在 Worker 内部抛出错误时会发生此事件。这个事件也可以使用 `worker.addEventListener('error', handler)` 来处理。
@@ -166,13 +166,13 @@ Worker 对象还支持以下方法:
 
 在专用 worker 内部，全局作用域是 DedicatedWorkerGlobalScope 的一个实例。它继承自 WorkerGlobalScope，因此包括其所有属性和方法。worker 可以通过 self 访问这个全局作用域：
 
-**GLOBALSCOPEWORKER.JS**
+ **GLOBALSCOPEWORKER.JS** 
 
 ```javascript
 console.log('inside worker:', self);
 ```
 
-**MAIN.JS**
+ **MAIN.JS** 
 
 ```javascript
 const worker = new Worker('./globalScopeWorker.js');
@@ -183,7 +183,7 @@ console.log('created worker:', worker);
 
 如这里所示，顶层脚本和 worker 线程中的 console 对象都会写入浏览器控制台，这对调试很有用。因为 web worker 有一个不可忽略的启动延迟，即使 Worker 对象存在，worker 的日志消息也会打印在主线程的日志消息之后。
 
-**注意：** 这里有两个独立的 JavaScript 线程将消息发送到单个 console 对象，该对象随后序列化消息并在浏览器控制台中打印它们。浏览器从两个不同的 JavaScript 线程接收消息，并负责在它认为合适的时候交叉存取（interleaving）它们。因此，应谨慎使用来自多个线程的日志消息来确定操作顺序。
+ **注意：** 这里有两个独立的 JavaScript 线程将消息发送到单个 console 对象，该对象随后序列化消息并在浏览器控制台中打印它们。浏览器从两个不同的 JavaScript 线程接收消息，并负责在它认为合适的时候交叉存取（interleaving）它们。因此，应谨慎使用来自多个线程的日志消息来确定操作顺序。
 
 DedicatedWorkerGlobalScope 使用以下属性和方法扩展了 WorkerGlobalScope：
 - `name`: 可以提供给 Worker 构造函数的可选字符串标识符。
@@ -323,7 +323,7 @@ worker.onmessage = ({data}) => console.log(data);
 
 Worker脚本不必是完整的实体。可以使用`importScripts()`方法以编程方式加载和执行任意数量的脚本，该方法可在全局`worker`对象上使用。此方法将加载脚本并按顺序同步执行它们。以下示例加载并执行两个脚本:
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 const worker = new Worker('./worker.js');
 // importing scripts
@@ -332,17 +332,17 @@ const worker = new Worker('./worker.js');
 // scripts imported
 ```
 
-**SCRIPTA.JS**
+ **SCRIPTA.JS** 
 ```javascript
 console.log('scriptA executes');
 ```
 
-**SCRIPTB.JS**
+ **SCRIPTB.JS** 
 ```javascript
 console.log('scriptB executes');
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 ```javascript
 console.log('importing scripts');
 importScripts('./scriptA.js');
@@ -359,7 +359,7 @@ console.log('scripts imported');
 
 脚本加载受正常CORS限制的约束，但除此之外，worker可以自由地从其他源请求脚本。这种导入策略类似于通过 `<script>` 标签产生的动态脚本加载。本着这种精神，作用域与导入的脚本共享。此处演示了这种行为:
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 const worker = new Worker('./worker.js', {name: 'foo'});
 // importing scripts in foo with bar
@@ -368,17 +368,17 @@ const worker = new Worker('./worker.js', {name: 'foo'});
 // scripts imported
 ```
 
-**SCRIPTA.JS**
+ **SCRIPTA.JS** 
 ```javascript
 console.log(`scriptA executes in ${self.name} with ${globalToken}`);
 ```
 
-**SCRIPTB.JS**
+ **SCRIPTB.JS** 
 ```javascript
 console.log(`scriptB executes in ${self.name} with ${globalToken}`);
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 ```javascript
 const globalToken = 'bar';
 console.log(`importing scripts in ${self.name} with ${globalToken}`);
@@ -390,18 +390,18 @@ console.log('scripts imported');
 
 可能会发现worker需要产生自己的“子worker”。这在有多个CPU内核可用于并行计算的情况下非常有用。选择使用subworker模型应该只在仔细的设计考虑之后进行：运行多个web worker可能会产生相当大的计算开销，并且只有在并行化的收益超过成本时才应该这样做。除了路径解析之外，子worker的创建与普通worker的创建几乎相同：子worker脚本路径将根据其父worker而不是主页面进行解析。这个演示如下（注意添加了脚本目录）：
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 const worker = new Worker('./js/worker.js');
 ```
 
-**JS/WORKER.JS**
+ **JS/WORKER.JS** 
 ```javascript
 console.log('worker');
 const worker = new Worker('./subworker.js');
 ```
 
-**JS/SUBWORKER.JS**
+ **JS/SUBWORKER.JS** 
 ```javascript
 console.log('subworker');
 ```
@@ -410,7 +410,7 @@ console.log('subworker');
 
 处理worker错误：如果在worker脚本中抛出错误，worker的沙盒将用于防止它中断父线程的执行。此处演示了这一点，其中封闭的try/catch块不会捕获抛出的错误：
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 try {
     const worker = new Worker('./worker.js');
@@ -421,21 +421,21 @@ try {
 // no error
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 ```javascript
 throw Error('foo');
 ```
 
 但是，此事件仍会冒泡到全局worker环境，并且可以通过在Worker对象上设置错误事件侦听器来访问：
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 const worker = new Worker('./worker.js');
 worker.onerror = console.log;
 // ErrorEvent {message: "Uncaught Error: foo"}
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 ```javascript
 throw Error('foo');
 ```
@@ -446,7 +446,7 @@ throw Error('foo');
 
 最简单和最常见的形式是使用 `postMessage()` 来在主线程和 Worker 线程之间传递序列化消息。下面展示了一个简单的阶乘示例:
 
-**factorialWorker.js**
+ **factorialWorker.js** 
 ```javascript
 function factorial(n) {
   let result = 1;
@@ -461,7 +461,7 @@ self.onmessage = ({data}) => {
 };
 ```
 
-**main.js**
+ **main.js** 
 ```javascript
 const factorialWorker = new Worker('./factorialWorker.js');
 factorialWorker.onmessage = ({data}) => console.log(data);
@@ -479,7 +479,7 @@ factorialWorker.postMessage(10);
 
 对于主线程和 worker 线程，通过 `postMessage()` 进行通信涉及调用全局对象上的方法并在其中定义临时传输协议。这可以由 Channel Messaging API 代替，它允许在两个环境之间创建显式通信通道。
 
-**worker.js**
+ **worker.js** 
 ```javascript
 // Store messagePort globally inside listener
 let messagePort = null;
@@ -509,7 +509,7 @@ self.onmessage = ({ports}) => {
 };
 ```
 
-**main.js**
+ **main.js** 
 ```javascript
 const channel = new MessageChannel();
 const factorialWorker = new Worker('./worker.js');
@@ -530,7 +530,7 @@ channel.port2.postMessage(5);
 
 在两个 worker 希望彼此直接通信的情况下，`MessageChannel` 真正变得有用。这可以通过将一个端口传递给每个 worker 来实现。考虑以下示例，其中先将数组传递给第一个 worker 程序，再传递给第二个 worker 程序，然后传递回主页:
 
-**main.js**
+ **main.js** 
 ```javascript
 const channel = new MessageChannel();
 const workerA = new Worker('./worker.js');
@@ -549,7 +549,7 @@ workerB.postMessage(['page'])
 // ['page', 'workerB', 'workerA']
 ```
 
-**worker.js**
+ **worker.js** 
 ```javascript
 let messagePort = null;
 let contextIdentifier = null;
@@ -586,7 +586,7 @@ self.onmessage = ({data, ports}) => {
 
 在同一源上运行的脚本能够在共享的`BroadcastChannel`上发送和接收确认消息。这种通道类型设置起来更简单，并且不需要`MessageChannel`所需的端口传递。这可以按如下方式完成：
 
-**MAIN.JS**
+ **MAIN.JS** 
 
 ```javascript
 const channel = new BroadcastChannel('worker_channel');
@@ -599,7 +599,7 @@ setTimeout(() => channel.postMessage('foo'), 1000);
 // heard bar on page
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 
 ```javascript
 const channel = new BroadcastChannel('worker_channel');
@@ -660,7 +660,7 @@ Worker通常需要以某种形式提供数据有效负载。由于Worker在单�
 
 以下示例演示了ArrayBuffer到Worker程序的正常结构化克隆。在这个例子中没有发生对象传输：
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 const worker = new Worker('./worker.js');
 // Create 32 byte buffer
@@ -670,7 +670,7 @@ worker.postMessage(arrayBuffer);
 console.log(`page's buffer size: ${arrayBuffer.byteLength}`); // 32
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 ```javascript
 self.onmessage = ({data}) => {
   console.log(`worker's buffer size: ${data.byteLength}`); // 32
@@ -679,7 +679,7 @@ self.onmessage = ({data}) => {
 
 当ArrayBuffer被指定为可传输对象时，对缓冲区内存的引用在父环境中被清除并分配给Worker环境。此处演示了这一点，其中从父环境中删除了在ArrayBuffer内分配的内存：
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 const worker = new Worker('./worker.js');
 // Create 32 byte buffer
@@ -689,7 +689,7 @@ worker.postMessage(arrayBuffer, [arrayBuffer]);
 console.log(`page's buffer size: ${arrayBuffer.byteLength}`); // 0
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 ```javascript
 self.onmessage = ({data}) => {
   console.log(`worker's buffer size: ${data.byteLength}`); // 32
@@ -698,7 +698,7 @@ self.onmessage = ({data}) => {
 
 将可传输对象嵌套在其他对象类型中是完全可以的。包含对象将被复制，嵌套对象将被传输：
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 const worker = new Worker('./worker.js');
 // Create 32 byte buffer
@@ -708,7 +708,7 @@ worker.postMessage({foo: {bar: arrayBuffer}}, [arrayBuffer]);
 console.log(`page's buffer size: ${arrayBuffer.byteLength}`); // 0
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 ```javascript
 self.onmessage = ({data}) => {
   console.log(`worker's buffer size: ${data.foo.bar.byteLength}`); // 32
@@ -719,7 +719,7 @@ self.onmessage = ({data}) => {
 
 SharedArrayBuffer不是被克隆或传输，而是在浏览器环境之间共享的ArrayBuffer。在`postMessage()`中传递SharedArrayBuffer时，浏览器将只传递对原始缓冲区的引用。因此，两个不同的JavaScript环境将各自维护对同一内存块的引用。每个环境都可以像使用普通ArrayBuffer一样自由修改缓冲区：
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 const worker = new Worker('./worker.js');
 // Create 1 byte buffer
@@ -737,7 +737,7 @@ worker.postMessage(sharedArrayBuffer);
 // buffer value after worker modification: 2
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 ```javascript
 self.onmessage = ({data}) => {
   const view = new Uint8Array(data);
@@ -751,7 +751,7 @@ self.onmessage = ({data}) => {
 
 当然，在两个并行线程之间共享内存块会带来竞争条件（race conditions）的风险。换句话说，SharedArrayBuffer实例实际上被视为不稳定内存。下面的示例演示了此问题：
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 // Create worker pool of size 4
 const workers = [];
@@ -779,7 +779,7 @@ for (const worker of workers) {
 // Final buffer value: 2145106
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 ```javascript
 self.onmessage = ({data}) => {
   const view = new Uint32Array(data);
@@ -793,7 +793,7 @@ self.onmessage = ({data}) => {
 
 在这里，每个worker正在执行1,000,000次顺序操作，这些操作从共享数组索引中读取，执行添加，然后将该值写回到数组索引中。当worker读/写操作交错时会发生竞争条件。为了解决这个问题，Atomics全局对象允许worker有效地获得对SharedArrayBuffer实例的锁定，并在允许其他worker执行任何操作之前执行整个读/添加/写序列。将`Atomics.add()`合并到这个例子中会产生一个正确的最终值：
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 // Create worker pool of size 4
 const workers = [];
@@ -821,7 +821,7 @@ for (const worker of workers) {
 // Final buffer value: 4000001
 ```
 
-**WORKER.JS**
+ **WORKER.JS** 
 ```javascript
 self.onmessage = ({data}) => {
   const view = new Uint32Array(data);
@@ -1168,13 +1168,13 @@ SharedWorker “连接”与关联的 MessagePort 或 MessageChannel 的连接�
 每次调用 SharedWorker 构造函数时，都会在共享 worker 内部触发连接事件，无论是否创建了 worker。
 下面的示例演示了这一点，其中在循环内调用构造函数：
 
-**sharedWorker.js**
+ **sharedWorker.js** 
 ```javascript
 let i = 0;
 self.onconnect = () => console.log(`connected ${++i} times`);
 ```
 
-**main.js**
+ **main.js** 
 ```javascript
 for (let i = 0; i < 5; ++i) {
     new SharedWorker('./sharedWorker.js');
@@ -1190,7 +1190,7 @@ for (let i = 0; i < 5; ++i) {
 
 下面演示了访问事件的 ports 数组。这里使用了一个 Set 来确保只跟踪唯一的对象实例：
 
-**sharedWorker.js**
+ **sharedWorker.js** 
 ```javascript
 const connectedPorts = new Set();
 self.onconnect = ({ports}) => {
@@ -1199,7 +1199,7 @@ self.onconnect = ({ports}) => {
 };
 ```
 
-**main.js**
+ **main.js** 
 ```javascript
 for (let i = 0; i < 5; ++i) {
     new SharedWorker('./sharedWorker.js');
@@ -1244,13 +1244,13 @@ console.log(navigator.serviceWorker);
 
 服务worker与共享 Worker 的相似之处在于，如果它尚不存在，则会生成一个新的；否则将获得与现有服务worker的连接。ServiceWorkerContainer 没有通过全局构造函数创建，而是公开了一个 `register()` 方法，该方法以与 Worker 或 SharedWorker 构造函数相同的方式传递一个脚本 URL：
 
-**emptyServiceWorker.js**
+ **emptyServiceWorker.js** 
 
 ```javascript
 // empty 服务worker script
 ```
 
-**main.js**
+ **main.js** 
 
 ```javascript
 navigator.serviceWorker.register('./emptyServiceWorker.js');
@@ -1258,13 +1258,13 @@ navigator.serviceWorker.register('./emptyServiceWorker.js');
 
 `register()` 方法返回一个 promise，它解决为 ServiceWorkerRegistration 对象，如果注册失败则为拒绝。
 
-**emptyServiceWorker.js**
+ **emptyServiceWorker.js** 
 
 ```javascript
 // empty 服务worker script
 ```
 
-**main.js**
+ **main.js** 
 
 ```javascript
 // Successfully registers a 服务worker, resolves
@@ -2052,7 +2052,7 @@ navigator.serviceWorker.register('./serviceWorker.js')
 
 与专用工作器和共享工作器一样，服务工作器可以使用 `postMessage()` 与客户端交换异步消息。其中一种最简单的方法是向激活的工作器发送消息，并使用事件对象发送回复。发送给服务工作器的消息可以在全局范围内处理，而发送回客户端的消息可以在 ServiceWorkerGlobalScope 对象上处理。
 
-**serviceWorker.js:**
+ **serviceWorker.js:** 
 
 ```javascript
 self.onmessage = ({ data, source }) => {
@@ -2061,7 +2061,7 @@ self.onmessage = ({ data, source }) => {
 };
 ```
 
-**main.js:**
+ **main.js:** 
 
 ```javascript
 navigator.serviceWorker.onmessage = ({ data }) => {
@@ -2085,7 +2085,7 @@ navigator.serviceWorker.register('./serviceWorker.js')
 
 这也可以通过使用 `serviceWorker.controller` 属性来轻松实现：
 
-**serviceWorker.js:**
+ **serviceWorker.js:** 
 
 ```javascript
 self.onmessage = ({ data, source }) => {
@@ -2094,7 +2094,7 @@ self.onmessage = ({ data, source }) => {
 };
 ```
 
-**main.js:**
+ **main.js:** 
 
 ```javascript
 navigator.serviceWorker.onmessage = ({ data }) => {
@@ -2120,7 +2120,7 @@ navigator.serviceWorker.register('./serviceWorker.js')
 
 如果服务工作器应该发起消息握手，可以通过以下方式获取对客户端的引用：
 
-**serviceWorker.js:**
+ **serviceWorker.js:** 
 
 ```javascript
 self.onmessage = ({ data }) => {
@@ -2133,7 +2133,7 @@ self.onactivate = () => {
 };
 ```
 
-**main.js:**
+ **main.js:** 
 
 ```javascript
 navigator.serviceWorker.onmessage = ({ data, source }) => {
@@ -2323,7 +2323,7 @@ self.onpush = (pushEvent) => {
 
 一个简单的推送通知实现如下：
 
-**MAIN.JS**
+ **MAIN.JS** 
 ```javascript
 navigator.serviceWorker.register('./serviceWorker.js')
   .then((registration) => {
@@ -2341,7 +2341,7 @@ navigator.serviceWorker.register('./serviceWorker.js')
   });
 ```
 
-**SERVICEWORKER.JS**
+ **SERVICEWORKER.JS** 
 ```javascript
 // When a push event is received, display the data as text inside a notification.
 self.onpush = (pushEvent) => {
