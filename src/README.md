@@ -1,23 +1,32 @@
 ---
-home: false
-# layout: BlogHome
+home: true
+layout: BlogHome
+hero: true
 icon: home
 title: 南风文档
+# heroText: 变强中...
 # heroImage: "logo.ico"
 bgImage: "nilou.jpg"
-bgImageDark: "nilou.jpg"
+# bgImageDark: "nilou.jpg"
+heroFullScreen: true
 bgImageStyle:
   background-attachment: fixed
-heroText: 南风知我意
-tagline: 《A Tour of C++ Third Edition》 《COMPUTER NETWORKING A Top-Down Approach Eighth Edition》 《Professional JavaScript for Web Developers, 4th Edition》
-# actions:
-#   - text: 使用指南
-#     icon: lightbulb
-#     link: ./demo/
-#     type: primary
+# tagline:  6
+projects :
+  - name: 《Professional JavaScript for Web Developers, 4th Edition》
+    link: ./js/chapter03/
+    icon: book
+    desc: Javascript高级程序设计第四版笔记
 
-#   - text: 文档
-#     link: ./guide/
+  - name: 《COMPUTER NETWORKING A Top-Down Approach Eighth Edition》 
+    link: ./cptnet/chapter01/
+    icon: book
+    desc: 计算机网络第八版笔记
+
+  - name: 《A Tour of C++ Third Edition》
+    link: ./cpp/chapter00/
+    icon: book
+    desc: c++之旅第三版笔记
 
 highlights:
   # - header: 易于安装
@@ -317,7 +326,7 @@ highlights:
   #       link: https://theme-hope.vuejs.press/zh/guide/advanced/pwa.html
 
 copyright: false
-footer: 使用 <a href="https://theme-hope.vuejs.press/zh/" target="_blank">VuePress Theme Hope</a> 主题 | MIT 协议, 版权所有 © 2019-至今 Mr.Hope
+# footer: 使用 <a href="https://theme-hope.vuejs.press/zh/" target="_blank">VuePress Theme Hope</a> 主题 | MIT 协议, 版权所有 © 2019-至今 Mr.Hope
 ---
 
 

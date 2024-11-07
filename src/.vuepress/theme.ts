@@ -15,6 +15,14 @@ export default hopeTheme({
 
   logo: "logo.ico",
 
+  blog: {
+    // name: 'John Doe', // 博主姓名
+    // avatar: '/path/to/avatar.jpg', // 博主头像路径
+    description: "山泽野修",
+    medias: { bilibili: 'https://space.bilibili.com/388042333' },
+
+  },
+
   // repo: "vuepress-theme-hope/vuepress-theme-hope",
 
   docsDir: "src",
@@ -46,6 +54,10 @@ export default hopeTheme({
 
   // 在这里配置主题提供的插件
   plugins: {
+    blog: {
+      excerpt: true,
+      article: '/cpp/',
+    },
     // 注意: 仅用于测试! 你必须自行生成并在生产环境中使用自己的评论服务
     comment: {
       provider: "Giscus",
@@ -119,7 +131,7 @@ export default hopeTheme({
       // gfm: true,
 
       // 在启用之前安装 mermaid
-       mermaid: true,
+      mermaid: true,
 
       // playground: {
       //   presets: ["ts", "vue"],
