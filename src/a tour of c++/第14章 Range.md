@@ -368,11 +368,11 @@ requires(B x, B y) {
 
 |                                  |                                                              |
 | -------------------------------- | ------------------------------------------------------------ |
-| **input_or_output_iterator\<I>** | **I** 是一个可递增（ **++** ）和可解引用（ **** *）的迭代器       |
+| **input_or_output_iterator\<I>** | **I** 是一个可递增（ **++** ）和可解引用（ ***** ）的迭代器       |
 | **sentinel_for\<S,I>**           | **S** 是一个 **Iterator** 类型的哨兵；即， **S** 是对 **I** 值类型的谓词 |
 | **sized_sentinel_for\<S,I>**     | **S** 是一个哨兵，其中 **-** 运算符可以应用于 **I**              |
-| **input_iterator\<I>**           | **I** 是一个输入迭代器；只能使用 **** *进行读取                 |
-| **output_iterator\<I>**          | **I** 是一个输出迭代器；只能使用 **** *进行写入                 |
+| **input_iterator\<I>**           | **I** 是一个输入迭代器；只能使用 ***** 进行读取                 |
+| **output_iterator\<I>**          | **I** 是一个输出迭代器；只能使用 ***** 进行写入                 |
 | **forward_iterator\<I>**         | **I** 是一个前向迭代器，支持 **multi-pass** 和 **==**           |
 | **bidirectional_iterator\<I>**   | **I** 是一个支持 **--** 的 **forward_iterator\<I>**            |
 | **random_access_iterator\<I>**   | **I** 是一个支持 **+** , **-** , **+=** , **-=** 以及 **[]** 操作的 **bidirectional_iterator\<I>** |
@@ -403,7 +403,7 @@ private:
 
  **friend** 声明符允许我们在类的范围内定义用于比较迭代器和哨兵的 **==** 和 **!=** 二元函数。
 
-我们可以检查这个 **Sentinel** 是否满足 **const char\** *的 **sentinel_for** 的要求：
+我们可以检查这个 **Sentinel** 是否满足 **const char\*** 的 **sentinel_for** 的要求：
 
 ```cpp
 static_assert(sentinel_for<Sentinel<const char*>, const char*>); // 检查C风格字符串的Sentinel
