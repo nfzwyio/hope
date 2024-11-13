@@ -4,11 +4,11 @@ import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 
 export default hopeTheme({
-  // hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
+  hostname: "https://blog.nfzwy.com",
 
   author: {
     name: "南风",
-    url: "https://nfwzy.com",
+    url: "https://blog.nfwzy.com",
   },
   // print: false,
   iconAssets: "fontawesome-with-brands",
@@ -57,6 +57,7 @@ export default hopeTheme({
     blog: {
       excerpt: true,
       article: '/cpp/',
+      filter: (page) => Boolean(page.frontmatter.article) && !page.frontmatter.home,
     },
     // 注意: 仅用于测试! 你必须自行生成并在生产环境中使用自己的评论服务
     comment: {
